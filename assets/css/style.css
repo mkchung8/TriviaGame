@@ -1,0 +1,49 @@
+body {
+    background-color: black;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+}
+
+img {
+    margin: auto;
+    display: block;
+}
+
+.container {
+    background: white; 
+    border-style: solid; 
+    border-color: black;
+    border-width: 20px;
+    margin-top: 30px;
+}
+
+h1 {
+    margin: auto;
+    display: block;
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+}
+
+#main-content {
+    margin: auto; 
+    display: block;
+    padding-bottom: 30px;
+}
+
+.btn-secondary {
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+}
+
+#game-title {
+    padding: 40px;
+}
+
