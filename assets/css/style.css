@@ -3,6 +3,8 @@ body {
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
     
 }
 .btn-secondary {
@@ -39,7 +41,9 @@ h2 {
     text-align: center;
     margin-bottom: 30px;
     margin-top: 30px;
+    font-size: 30px;
 }
+
 
 button {
     text-align: center; 

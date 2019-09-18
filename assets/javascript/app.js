@@ -39,7 +39,7 @@ $(document).ready(function(){
     var count = 0;
     var showQuestion; 
     var score = 0;
-    var timerCount = 10; 
+    var timerCount = 11; 
 
    
 
@@ -58,6 +58,8 @@ $(document).ready(function(){
     gameStart();
     });
 
+    var intervalId;
+
     function gameStart () {
 
     displayQuestion();
@@ -70,20 +72,82 @@ $(document).ready(function(){
                 guesses.text(gameQuestions[count].answers[i])
                 $("#main-content").append(guesses) 
             };
+        var timerDiv = $("<div id='timer-div'>")
+                        $("#main-content").prepend(timerDiv)
+            
         };
 
+       intervalId = setInterval(timeWindow, 1000)
+            function timeWindow () {
+                timerCount--;
+                $("#timer-div").html("<p>You have " + timerCount + " seconds left.")
+                if(timerCount === -1) {
+                    clearInterval(intervalId)
+                    $("#timer-div").html("Your time is up!")
+                    $("#timer-div").append("<br> The correct answer was " + answersCorrect[count] + ".")
+                    setTimeout(nextQuestion, 1000*3)
+                }
+                }
+    
+                
+                
+                
     var userGuess;
 
+
     $("button").on("click", function(){
+        clearInterval(intervalId)
+        $("#timer-div").empty();
         userGuess = $(this).attr("data-name")
         console.log(userGuess)
-        if (userGuess === answersCorrect[count]){
-        alert("Correct")}
-     });
 
+       var answerCheck =  answersCorrect.indexOf(userGuess)
+       console.log(answerCheck)
+
+       if (answerCheck === -1) {
+           $("#timer-div").html("Wrong! The correct answer is " + answersCorrect[count]);
+           $(this).css("border-color","red")
+           setTimeout(nextQuestion, 1000*3)
+       }
+       else {
+           score++;
+           $("#timer-div").html("You are correct!")
+           $(this).css("border-color", "green")
+           setTimeout(nextQuestion, 1000*3)
+           console.log(score)
+       }
         
+     });
+     
+     function nextQuestion(){
+         $("#main-content").empty();
+         count++;
+         timerCount = 11;
+         gameStart();
+     };
+    
+     if (count === 9) {
+         endScreen();
+     }
+      
+      
 
     }
-
+    function endScreen(){
+        $("#main-content").empty();
+        clearInterval(intervalId)
+        var results = $("<div id='results'>")
+        results.html("You got " + score + " out of 10")
+        $("#main-content").append(results)
+        var masterLevel = $("<div id='master-level'>")
+        $("#main-content").append(masterLevel)
+        if (score > 5) {
+            masterLevel.html("You are a theory master")
+        } 
+        else if (score < 5) {
+            masterLevel.html("You are not a theory master. Try again.")
+        }
+    }
+    
 
 })
