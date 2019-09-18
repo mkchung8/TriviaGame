@@ -38,40 +38,51 @@ $(document).ready(function(){
     var answersCorrect = ["G Clef", "Semibreve","Semitone","Staves","Before Time Signatures","One Semitone Higher","Divide Bars","E# G# B##","Key Signatures","88"]
     var count = 0;
     var showQuestion; 
-    
-    var answerOne;
-    var answerTwo;
-    var answerThree;
     var score = 0;
     var timerCount = 10; 
 
    
 
-function startScreen() {
-    
-    var startButton = $('<button id="start" type="button" class="btn btn-secondary">Start</button>');
-    $("#main-content").html("<h2><b>Are you a Music Theory Master?</b> <br> <br> Answer each question in 10 seconds.<br> Press start to begin!</h2>");
-    $("#main-content").append('<img src="assets/images/startimage.gif" alt="image">');
-    $("#main-content").append(startButton);
-    };
+    function startScreen() {
+        
+        var startButton = $('<button id="start" type="button" class="btn btn-secondary">Start</button>');
+        $("#main-content").html("<h2><b>Are you a Music Theory Master?</b> <br> <br> Answer each question in 10 seconds.<br> Press start to begin!</h2>");
+        $("#main-content").append('<img src="assets/images/startimage.gif" alt="image">');
+        $("#main-content").append(startButton);
+        };
 
-startScreen();
+    startScreen();
 
-$("#start").on("click", function(){
-    $("#main-content").empty();
-   gameStart();
-});
+    $("#start").on("click", function(){
+        $("#main-content").empty();
+    gameStart();
+    });
 
-function gameStart () {
+    function gameStart () {
 
-displayQuestion();
+    displayQuestion();
 
-function displayQuestion () {
-    $("#main-content").append("<h2>" + gameQuestions[count].question + "</h2>");
-    for (var i=0; i < 3; i++) {
-        $("#main-content").append("<p class='answer'>" + gameQuestions[count].answers[i] + "</p>")
-            }
-        }
+    function displayQuestion () {
+        $("#main-content").append("<h2>" + gameQuestions[count].question + "</h2>");
+            for (var i=0; i < 4; i++) {
+                var guesses = $("<button>")
+                guesses.attr("data-name",gameQuestions[count].answers[i])
+                guesses.text(gameQuestions[count].answers[i])
+                $("#main-content").append(guesses) 
+            };
+        };
+
+    var userGuess;
+
+    $("button").on("click", function(){
+        userGuess = $(this).attr("data-name")
+        console.log(userGuess)
+        if (userGuess === answersCorrect[count]){
+        alert("Correct")}
+     });
+
+        
+
     }
 
 

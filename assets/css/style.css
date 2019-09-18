@@ -5,6 +5,13 @@ body {
     background-size: 100%;
     
 }
+.btn-secondary {
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+    width: auto;
+}
+
 
 img {
     margin: auto;
@@ -34,22 +41,21 @@ h2 {
     margin-top: 30px;
 }
 
-p {
+button {
     text-align: center; 
     font-weight: bold;
     font-size: 20px;
     border-style: solid;
     border-color: black;
-    border-width: 10px;
-    
-}
-.answer {
-    width: 300px;
+    border-width: 5px;
     margin: auto;
     display: block;
+    width: 40%;
+    margin-top: 10px;
     margin-bottom: 10px;
     
 }
+
 
 #main-content {
     margin: auto; 
@@ -61,12 +67,6 @@ p {
     margin: auto;
     display: block;
     text-align: center;
-}
-
-.btn-secondary {
-    margin: auto;
-    display: block;
-    margin-top: 20px;
 }
 
 #game-title {
