@@ -36,9 +36,8 @@ $(document).ready(function(){
     ];
 
     var answersCorrect = ["G Clef", "Semibreve","Semitone","Staves","Before Time Signatures","One Semitone Higher","Divide Bars","E# G# B##","Key Signatures","88"]
-    var count = 0;
-    var showQuestion; 
-    var score = 0;
+    var count = 0; 
+    var score = 1;
     var timerCount = 11; 
 
    
@@ -100,13 +99,14 @@ $(document).ready(function(){
         $("#timer-div").empty();
         userGuess = $(this).attr("data-name")
         console.log(userGuess)
-
+        $("button").attr("disabled", true);
        var answerCheck =  answersCorrect.indexOf(userGuess)
        console.log(answerCheck)
 
        if (answerCheck === -1) {
            $("#timer-div").html("Wrong! The correct answer is " + answersCorrect[count]);
            $(this).css("border-color","red")
+           
            setTimeout(nextQuestion, 1000*3)
        }
        else {
@@ -141,12 +141,24 @@ $(document).ready(function(){
         $("#main-content").append(results)
         var masterLevel = $("<div id='master-level'>")
         $("#main-content").append(masterLevel)
-        if (score > 5) {
-            masterLevel.html("You are a theory master")
+        if (score > 8) {
+            masterLevel.html("All Hail the Theory Master")
+            masterLevel.append("<img src='assets/images/masterlevel.gif' alt='image'>")
         } 
-        else if (score < 5) {
-            masterLevel.html("You are not a theory master. Try again.")
-        }
+        else {
+            masterLevel.html("Your theory needs work. Back to the bench!")
+            masterLevel.append("<img src='assets/images/needwork.gif'>")
+        };
+
+        var startButton = $('<button id="refresh" type="button" class="btn btn-secondary">Play Again</button>');
+        s("#main-content").append(startButton)
+        $("#refresh").on("click", function(){
+            count = 0;
+            score = 1;
+            gameStart();
+        })
+        
+        
     }
     
 
